@@ -1,0 +1,35 @@
+@layer components {
+  input {
+    @apply rounded !important;
+  }
+  .button { 
+    @apply bg-blue-800 px-8 py-2 font-medium tracking-wide rounded text-white mx-2;
+  }
+  .container {
+    @apply text-center my-10 w-3/5 mx-auto shadow-xl rounded p-5;
+  }
+  .todoR {
+    @apply w-4/5 shadow-xl mx-auto my-5;
+  }
+  .todo-row {
+    @apply flex items-center text-yellow-600 mx-auto border border-gray-300 px-4 py-2.5;
+  }
+  .todo-row:nth-child(4n + 1) {
+    @apply text-blue-800 ;
+  }
+  .todo-row:nth-child(4n + 2) {
+    @apply text-green-800 ;
+  }
+  .todo-row:nth-child(4n + 3) {
+    @apply text-red-700 ;
+  }
+  .todo-text {
+    @apply w-4/5 text-left capitalize break-words;
+  }
+  .todo-icon {
+    @apply flex w-1/5 justify-evenly;
+  }
+  .btnIcon {
+    @apply text-2xl mr-2 border border-gray-300 rounded-full;
+  }
+}

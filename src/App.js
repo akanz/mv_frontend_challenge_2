@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import "@material-tailwind/react/tailwind.css";
+import './css/App.css';
+import Todolist from './Components/Todolist';
+import Todolistredux from "./Components/Todolistredux";
+import { Provider } from 'react-redux'
+import store from './redux/store'
+import Todoformredux from "./Components/Todoformredux";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Provider store={store}>
+    <div className='py-20'>
+      <h1 className='text-gray-700 text-3xl tracking-wider text-center'>Makersvalley challenge two</h1>
+      <h3 className='text-sm text-center text-gray-500 my-2'>A todo app with drag and drop feature</h3>
+      <Todolistredux />
     </div>
+    </Provider>
   );
 }
 
