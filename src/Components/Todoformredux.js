@@ -1,25 +1,29 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../redux/actions/index";
+import { addTodo, updateTodo } from "../redux/actions/index";
 
 const Todoformredux = ({ edit }) => {
   const [text, setText] = useState(edit ? edit.value : "");
-  console.log(edit);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setText(e.target.value);
   };
-  const handleSubmit = (event) => {
+  // add todo
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (text !== "") {
-      dispatch(addTodo(text.trim()));
+      edit
+        ? dispatch(updateTodo(edit.id, text.trim()))
+        : dispatch(addTodo(text.trim()));
+
       setText("");
     } else {
       // alert("cant not to empty text");
     }
-    event.preventDefault();
+  
   };
-
+  
   return (
     <div>
       <form onSubmit={handleSubmit}>

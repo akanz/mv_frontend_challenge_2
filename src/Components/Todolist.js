@@ -6,7 +6,7 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 const Todolist = () => {
   const [todos, setTodos] = useState([]);
-
+console.log(todos.length)
   const handleDrag = (result) => {
       if(!result.destination) return;
     const newTodosArr = Array.from(todos);
