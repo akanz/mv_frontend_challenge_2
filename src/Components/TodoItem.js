@@ -5,9 +5,9 @@ import { Draggable } from "react-beautiful-dnd";
 import { MdClose } from "react-icons/md";
 import { FiEdit3 } from "react-icons/fi";
 import { AiFillCheckCircle } from "react-icons/ai";
-import Todoformredux from "./Todoformredux";
+import TodoForm from "./TodoForm";
 
-const Todoredux = ({ id, text, completed }) => {
+const TodoItem = ({ id, text, completed }) => {
   const dispatch = useDispatch();
   const [edit, setEdit] = useState({
     id: null,
@@ -31,7 +31,7 @@ const Todoredux = ({ id, text, completed }) => {
   };
 
   if (edit.value === text && edit.id === id) {
-    return <Todoformredux edit={edit} onSubmit={submitUpdate} />;
+    return <TodoForm edit={edit} onSubmit={submitUpdate} />
   }
 
   return (
@@ -70,4 +70,4 @@ const Todoredux = ({ id, text, completed }) => {
   );
 };
 
-export default Todoredux;
+export default TodoItem;

@@ -1,47 +1,51 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTodo, updateTodo } from "../redux/actions/index";
 
-const TodoForm = (props) => {
-  const [input, setInput] = useState(props.edit ? props.edit.value : "");
-  const inputRef = useRef(null);
-
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
+const TodoForm = ({ edit }) => {
+  const [text, setText] = useState(edit ? edit.value : "");
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    setInput(e.target.value);
+    setText(e.target.value);
   };
+  // add todo
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (text !== "") {
+      edit
+        ? dispatch(updateTodo(edit.id, text.trim()))
+        : dispatch(addTodo(text.trim()));
 
-    props.onSubmit({
-      id: Math.floor(Math.random() * 100000),
-      text: input,
-    });
-    setInput("");
+      setText("");
+    } else {
+      // alert("cant not to empty text");
+    }
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        {props.edit ? (
-          <div className='mb-2'>
+        {edit ? (
+          <div className="mb-2">
             <input
+              className="w-4/6 mx-auto"
               type="text"
-              value={input}
-              placeholder="Add a todo"
+              value={text}
+              autoFocus={true}
               onChange={handleChange}
-              ref={inputRef}
             />
             <button className="bg-green-400 text-black button">edit</button>
           </div>
         ) : (
-          <div className='mb-2'>
+          <div className="mb-2">
             <input
               type="text"
-              value={input}
+              className="w-4/6 mx-auto"
+              value={text}
               placeholder="Add a todo"
+              autoFocus={true}
               onChange={handleChange}
-              ref={inputRef}
             />
             <button className="button">add</button>
           </div>
